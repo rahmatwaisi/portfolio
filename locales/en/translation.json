@@ -1,0 +1,110 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "experiences": "Experiences",
+    "skills": "Skills"
+  },
+  "hero": {
+    "greeting": "Hello",
+    "name": "I'm Rahmat Waisi",
+    "role": "Senior Back-End Engineer",
+    "tagline": "Building high-performance, scalable distributed systems that power millions of interactions.",
+    "cta": "Explore My Work"
+  },
+  "about": {
+    "title": "About Me",
+    "bio": "I am a Senior Back-End Engineer and Software Architect with over 5 years of professional experience designing high-scale production systems. Specializing in Go, PHP (Laravel), and distributed architectures, I focus on building reliable microservices and high-throughput event-driven applications.",
+    "bio2": "I thrive at the intersection of clean architecture (SOLID principles) and pragmatic engineering—optimizing database bottlenecks, streamlining DevOps pipelines, and turning complex infrastructure challenges into maintainable solutions.",
+    "location": "Location",
+    "locationValue": "Hewlêr (Erbil) | On-site, Full-time & Remote",
+    "availability": "Availability",
+    "availabilityValue": "Open to Opportunities",
+    "experience": "Experience",
+    "experienceValue": "5+ Years"
+  },
+  "experiences": {
+    "title": "Work Experience",
+    "jobs": [
+      {
+        "role": "Senior Back-End Developer",
+        "company": "Leading International MarTech Platform - Ainfluencer (Remote — Canada)",
+        "location": "Remote",
+        "period": "Dec 2021 – Present",
+        "bullets": [
+          "Architected and scaled Laravel backend services processing 1M+ daily email events with high consistency.",
+          "Optimized API response times 10x (from 2s down to 200ms) utilizing advanced Redis caching and complex query optimization.",
+          "Designed and optimized over 300 RESTful API endpoints, successfully reducing server infrastructure load by 50%.",
+          "Owned mission-critical production releases for real-time chat modules and secure payment gateways.",
+          "Integrated User.com APIs for advanced marketing automation, contributing to a 35% increase in revenue."
+        ]
+      },
+      {
+        "role": "Backend Developer",
+        "company": "Bernet",
+        "location": "Remote / Part-time",
+        "period": "Nov 2021 – Feb 2022",
+        "bullets": [
+          "Engineered backend services for the Nobaar web application, significantly enhancing system stability and scalability.",
+          "Refactored legacy controllers by strictly applying SOLID principles, increasing code reusability and maintainability.",
+          "Optimized over 100 complex SQL queries and 42 API endpoints to drastically reduce database latency."
+        ]
+      },
+      {
+        "role": "Web Developer",
+        "company": "Mana Ertebat Kareh",
+        "location": "On-site",
+        "period": "Apr 2021 – Oct 2021",
+        "bullets": [
+          "Developed robust backend features using PHP/Laravel, improving core transactional workflows.",
+          "Built secure authentication and seamless checkout workflows, enhancing transactional reliability."
+        ]
+      },
+      {
+        "role": "Junior PHP Developer",
+        "company": "Ainaki Startup",
+        "location": "On-site",
+        "period": "Sep 2017 – Apr 2019",
+        "bullets": [
+          "Developed backend features for an e-commerce eyewear platform, supporting complex order workflows and product management.",
+          "Deepened framework-level expertise in PHP and Laravel ecosystem through iterative feature shipping."
+        ]
+      }
+    ]
+  },
+  "skills": {
+    "title": "Technical Skills",
+    "categories": [
+      {
+        "name": "Core Languages & Frameworks",
+        "skills": ["PHP", "Go", "Laravel", "Filament", "Livewire", "Gin"]
+      },
+      {
+        "name": "Frontend & Core Web",
+        "skills": ["JavaScript", "TypeScript", "Next.js", "HTML", "CSS", "Blade"]
+      },
+      {
+        "name": "Databases & Caching",
+        "skills": ["MariaDB", "PostgreSQL", "MongoDB", "Elasticsearch", "Redis", "Memcached", "MeiliSearch"]
+      },
+      {
+        "name": "System Design & Messaging",
+        "skills": ["Microservices Architecture", "Event-Driven Design", "Kafka", "RabbitMQ", "RESTful API Design", "Database Optimization"]
+      },
+      {
+        "name": "DevOps & Infrastructure",
+        "skills": ["Linux", "Docker", "Docker Swarm", "Kubernetes", "CI/CD Pipelines", "Git", "Nginx", "FrankenPHP"]
+      }
+    ]
+  },
+  "lang": {
+    "en": "English",
+    "ku": "کوردی",
+    "fa": "فارسی",
+    "ar": "العربية"
+  },
+  "theme": {
+    "dark": "Dark",
+    "light": "Light"
+  }
+}
