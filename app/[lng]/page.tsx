@@ -114,126 +114,54 @@ const LANGS: Lang[] = ['en', 'ku', 'fa', 'ar'];
 const RTL_LANGS = new Set<Lang>(['fa', 'ar', 'ku']);
 
 function HexAvatar() {
+    const [flipped, setFlipped] = useState(false);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setFlipped((f) => !f);
+        }, 3000); // change this number to adjust timing (ms)
+
+        return () => clearInterval(interval);
+    }, []);
+
     return (
-        <div
-            style={{
-                position: 'relative',
-                width: 260,
-                height: 260,
-                flexShrink: 0,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-            }}
-            aria-hidden="true"
-        >
-            {/* Outer glow pulse */}
+        <div className="avatar-wrapper" aria-hidden="true">
             <div
-                style={{
-                    position: 'absolute',
-                    inset: -8,
-                    borderRadius: '50%',
-                    background: 'linear-gradient(135deg, #008080, #2196F3)',
-                    opacity: 0.4,
-                    animation: 'hex-pulse 3s ease-in-out infinite',
-                }}
-            />
-
-            {/* Gradient border ring */}
-            <div
-                style={{
-                    position: 'absolute',
-                    inset: -3,
-                    borderRadius: '50%',
-                    background: 'linear-gradient(135deg, #008080, #2196F3)',
-                }}
-            />
-
-            {/* Surface gap between border and photo */}
-            <div
-                style={{
-                    position: 'absolute',
-                    inset: 0,
-                    borderRadius: '50%',
-                    background: 'var(--surface)',
-                }}
-            />
-
-            {/* Photo */}
-            <div
-                style={{
-                    position: 'absolute',
-                    inset: 3,
-                    borderRadius: '50%',
-                    overflow: 'hidden',
-                }}
+                className="avatar-flip-inner"
+                style={{ transform: flipped ? 'rotateY(180deg)' : 'rotateY(0deg)' }}
             >
-                <Image
-                    src="/avatar.jpg"
-                    alt="Rahmat Waisi"
-                    fill
-                    style={{objectFit: 'cover', objectPosition: 'center top'}}
-                    priority
-                />
+                {/* Front face — your photo */}
+                <div className="avatar-face avatar-face-front">
+                    <Image
+                        src="/avatar.jpg"
+                        alt="Raphael Waisi"
+                        fill
+                        style={{ objectFit: 'cover', objectPosition: 'center top' }}
+                        priority
+                    />
+                </div>
+
+                {/* Back face — your logo */}
+                <div className="avatar-face avatar-face-back">
+                    <Image
+                        src="/logo.png"
+                        alt="RW Logo"
+                        fill
+                        style={{ objectFit: 'contain', padding: '20%' }}
+                    />
+                </div>
             </div>
 
-            {/* Teal orbit ring */}
-            <div
-                style={{
-                    position: 'absolute',
-                    inset: -20,
-                    borderRadius: '50%',
-                    border: '1px dashed rgba(0,128,128,0.45)',
-                    animation: 'orbit-spin 8s linear infinite',
-                    pointerEvents: 'none',
-                }}
-            >
-        <span
-            style={{
-                position: 'absolute',
-                top: -5,
-                left: '50%',
-                transform: 'translateX(-50%)',
-                width: 10,
-                height: 10,
-                borderRadius: '50%',
-                background: '#86efac',
-                boxShadow: '0 0 12px #008080',
-                display: 'block',
-            }}
-        />
+            {/* Orbit rings — stay outside the flip, spin continuously */}
+            <div className="orbit-ring orbit-ring-1">
+                <span className="orbit-dot orbit-dot-1" />
             </div>
-
-            {/* Blue counter-orbit ring */}
-            <div
-                style={{
-                    position: 'absolute',
-                    inset: -38,
-                    borderRadius: '50%',
-                    border: '1px dashed rgba(33,150,243,0.25)',
-                    animation: 'orbit-spin 14s linear infinite reverse',
-                    pointerEvents: 'none',
-                }}
-            >
-        <span
-            style={{
-                position: 'absolute',
-                bottom: -4,
-                left: '50%',
-                transform: 'translateX(-50%)',
-                width: 7,
-                height: 7,
-                borderRadius: '50%',
-                background: '#86deef',
-                boxShadow: '0 0 10px #2196F3',
-                display: 'block',
-            }}
-        />
+            <div className="orbit-ring orbit-ring-2">
+                <span className="orbit-dot orbit-dot-2" />
             </div>
         </div>
     );
 }
-
 // ── Home tab ──────────────────────────────────────────────────────────────────
 function HomeTab({t, onTabChange, isRTL}: { t: Translation; onTabChange: (tab: Tab) => void; isRTL: boolean }) {
     return (
