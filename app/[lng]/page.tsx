@@ -163,57 +163,89 @@ function HexAvatar() {
     );
 }
 // ── Home tab ──────────────────────────────────────────────────────────────────
+// ── Home tab ──────────────────────────────────────────────────────────────────
+// ── Home tab ──────────────────────────────────────────────────────────────────
 function HomeTab({t, onTabChange, isRTL}: { t: Translation; onTabChange: (tab: Tab) => void; isRTL: boolean }) {
     return (
         <div
-            className="tab-panel tab-content"
+            // Added pt-12 and pb-[120px] for mobile to pad the container itself.
+            // lg:py-12 resets it back to normal equal padding on desktop.
+            className={`tab-panel tab-content flex flex-col lg:flex-row items-center justify-center lg:justify-between px-4 pt-12 pb-[120px] lg:py-12 ${
+                isRTL ? 'lg:pr-[6rem] lg:pl-8' : 'lg:pl-[6rem] lg:pr-8'
+            }`}
             style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                gap: '2rem',
-                padding: '3rem 2rem 3rem 5.5rem',
-                minHeight: 520,
-                flexWrap: 'wrap',
+                minHeight: '100%',
+                gap: '64px',
+                // Removed inline paddingTop and paddingBottom so Tailwind can take over
             }}
         >
-            {/* Left content */}
-            <div style={{flex: '1 1 340px', minWidth: 0}}>
+            {/* Text Content */}
+            <div
+                className="flex flex-col items-center lg:items-start text-center lg:text-start"
+                style={{ maxWidth: '600px', zIndex: 10 }}
+            >
                 <p className="hero-greeting">{t.hero.greeting}</p>
                 <h1 className="hero-name">{t.hero.name}</h1>
                 <p className="hero-role">{t.hero.role}</p>
                 <p className="hero-tagline">{t.hero.tagline}</p>
 
                 <button
-                    className="cta-btn"
+                    className="cta-btn mt-6"
                     onClick={() => onTabChange('experiences')}
                     aria-label={t.hero.cta}
+                    style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}
                 >
                     {t.hero.cta}
                     {isRTL ? <HiArrowLeft aria-hidden="true"/> : <HiArrowRight aria-hidden="true"/>}
                 </button>
             </div>
 
-            {/* Right: 3D Hex avatar */}
-            {/*    <div
+            {/* Hex Avatar */}
+            <div
+                // Removed the mb from here, let the container handle the spacing
+                className="flex justify-center items-center"
                 style={{
-                    flex: '0 0 auto',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    padding: '1rem',
-                    position: 'relative',
+                    flexShrink: 0,
+                    width: '100%',
+                    maxWidth: '400px'
                 }}
             >
                 <HexAvatar/>
-            </div>*/}
-
-            <div className="flex justify-center items-center w-full md:w-auto my-6 md:my-0">
-                <HexAvatar/>
             </div>
+
+            <MobileScrollIndicator />
         </div>
     );
 }
+
+// This is the core content function
+const MadeWithSignature = () => (
+    <>
+        <span>
+            Made with{" "}
+            {Math.random() > 0.5 ? (
+                <SiClaude className="inline text-red-500 mx-1"/>
+            ) : (
+                <FaBrain className="inline text-teal-500 mx-1"/>
+            )}{" "}
+            by Rahmat
+        </span>
+    </>
+);
+
+// Used inside HomeTab (Mobile - Flow mode)
+const MobileScrollIndicator = () => (
+    <div className="scroll-indicator flex lg:hidden flex-col items-center py-8 w-full">
+        <MadeWithSignature />
+    </div>
+);
+
+// Used in your Main Page (Desktop - Fixed mode)
+const DesktopScrollIndicator = () => (
+    <div className="scroll-indicator hidden lg:flex fixed bottom-8 left-1/2 -translate-x-1/2 z-50">
+        <MadeWithSignature />
+    </div>
+);
 
 // ── About tab ─────────────────────────────────────────────────────────────────
 function AboutTab({t}: { t: Translation }) {
@@ -478,7 +510,7 @@ export default function PortfolioPage() {
                     aria-labelledby={`tab-${activeTab}`}
                     style={{
                         paddingLeft: isRTL ? 0 : undefined,
-                        paddingRight: isRTL ? '4rem' : undefined,
+                        paddingRight: isRTL ? 0 : undefined,
                     }}
                 >
                     {activeTab === 'home' && (
@@ -493,23 +525,12 @@ export default function PortfolioPage() {
                     {activeTab === 'skills' && (
                         <SkillsTab t={t}/>
                     )}
+                    {/* The desktop version is fixed to the window */}
+                    {activeTab === 'home' && <DesktopScrollIndicator />}
                 </main>
 
-                {/* ── Scroll indicator (home only) ── */}
-                {activeTab === 'home' && (
-                    <div className="scroll-indicator" aria-hidden="true">
-                        <div className="scroll-indicator-line"/>
-                        <span>
-                            Made with{" "}
-                            {isDark ? (
-                                <SiClaude className="inline text-red-500 mx-1"/>
-                            ) : (
-                                <FaBrain className="inline text-teal-500 mx-1"/>
-                            )}{" "}
-                            by Rahmat
-                        </span>
-                    </div>
-                )}
+
+
             </div>
         </div>
     );
